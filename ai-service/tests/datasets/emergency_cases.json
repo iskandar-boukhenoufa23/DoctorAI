@@ -1,0 +1,14 @@
+[
+  {
+    "question": "I have crushing chest pain",
+    "emergency": true
+  },
+  {
+    "question": "I have difficulty breathing",
+    "emergency": true
+  },
+  {
+    "question": "What is a balanced diet?",
+    "emergency": false
+  }
+]

@@ -1,0 +1,5 @@
+[
+  {"question": "What causes an itchy rash?", "acceptable_specialties": ["dermatology", "general-medicine"]},
+  {"question": "What is a migraine?", "acceptable_specialties": ["neurology", "general-medicine"]},
+  {"question": "I have severe chest pain and cannot breathe", "expected_emergency": true}
+]
