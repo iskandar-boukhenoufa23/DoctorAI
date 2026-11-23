@@ -7,6 +7,8 @@ def select_doctor(state):
         doctors = []
     if not doctors:
         return {"decision": "no_doctor_available", "answer": "No AI doctor is available for this specialty right now."}
-    # Stable choice for MVP; replace with explicit user choice or capacity balancing.
-    doctor = sorted(doctors, key=lambda x: str(x["id"]))[0]
+    requested_id = state.get("doctor_id")
+    doctor = next((item for item in doctors if item.get("id") == requested_id), None)
+    # Stable choice for triage-driven consultations.
+    doctor = doctor or sorted(doctors, key=lambda x: str(x["id"]))[0]
     return {"doctor_id": str(doctor["id"]), "selected_doctor": doctor}

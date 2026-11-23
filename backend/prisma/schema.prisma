@@ -1,8 +1,25 @@
-generator client { provider = "prisma-client-js" }
-datasource db { provider = "postgresql" url = env("DATABASE_URL") }
-enum Role { PATIENT ADMIN }
-enum ConsultationStatus { ACTIVE COMPLETED CANCELLED ESCALATED }
-enum MessageRole { PATIENT DOCTOR SYSTEM }
+generator client { 
+  provider = "prisma-client-js" 
+}
+datasource db { 
+  provider = "postgresql" 
+  url = env("DATABASE_URL") 
+}
+enum Role { 
+  PATIENT
+  ADMIN 
+}
+enum ConsultationStatus { 
+  ACTIVE 
+  COMPLETED 
+  CANCELLED
+  ESCALATED 
+}
+enum MessageRole { 
+  PATIENT 
+  DOCTOR 
+  SYSTEM 
+}
 model User {
   id String @id @default(cuid())
   clerkId String @unique

@@ -10,3 +10,9 @@ def route_after_triage(state):
 
 def route_after_selection(state):
     return "end" if state.get("decision") == "no_doctor_available" else "retrieve"
+
+def route_after_retrieve(state):
+    if state.get("image_bytes"):
+        return "analyze_image"
+
+    return "generate"

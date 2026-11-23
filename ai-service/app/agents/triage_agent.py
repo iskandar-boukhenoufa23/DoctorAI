@@ -10,7 +10,11 @@ def classify_specialty(question: str, specialties: list[dict]) -> TriageDecision
               "Choose only one allowed slug. If unclear, choose general-medicine if available "
               "and request clarification. Do not assume absence of an emergency. "
               "Available specialty slugs: " + ", ".join(slugs))
-    result = get_llm().with_structured_output(TriageDecision).invoke([
+    result = get_llm().with_structured_output(
+        TriageDecision,
+        method="json_schema",
+        strict=True,
+    ).invoke([
         SystemMessage(content=prompt), HumanMessage(content=question)
     ])
     if result.specialty_slug not in slugs:

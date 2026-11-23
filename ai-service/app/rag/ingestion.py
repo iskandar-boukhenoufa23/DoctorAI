@@ -4,7 +4,7 @@ from langchain_core.documents import Document
 from pypdf import PdfReader
 from app.rag.chunking import chunk_documents
 from app.rag.vector_store import collection
-from app.llm.providers import get_embeddings
+from app.rag.embeddings import get_embeddings
 
 def extract_pdf(data: bytes) -> str:
     import io

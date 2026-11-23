@@ -2,14 +2,17 @@ from functools import lru_cache
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
-    openai_api_key: str = ""
-    openai_model: str = "gpt-4o-mini"
-    embedding_model: str = "text-embedding-3-small"
+    groq_api_key: str = ""
+    groq_model: str = "llama-3.1-8b-instant"
+
+    # Keep your existing settings below
+    embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     internal_api_key: str = ""
     nest_internal_url: str = ""
     nest_internal_api_key: str = ""
     chroma_path: str = "./data/chroma"
     max_upload_mb: int = 10
+    max_image_pixels: int = 20_000_000
     retrieval_k: int = 4
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 

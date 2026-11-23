@@ -9,13 +9,14 @@ def _client():
     cfg = settings()
     if not cfg.nest_internal_url or not cfg.nest_internal_api_key:
         raise DirectoryError("NestJS directory is not configured")
-    return httpx.Client(base_url=cfg.nest_internal_url.rstrip("/"),
-                        headers={"X-Service-Key": cfg.nest_internal_api_key}, timeout=8)
+    return httpx.Client(base_url=cfg.nest_internal_url.rstrip("/") + "/api/internal",
+                        headers={"Authorization": f"Bearer {cfg.nest_internal_api_key}"}, timeout=8)
 
 def list_specialists() -> list[dict]:
     try:
         with _client() as client:
-            response = client.get("/internal/specialists")
+            response = client.get("/specialists")
+            print("RESPONSE:::::  ", response)
             response.raise_for_status()
             data = response.json()
         if not isinstance(data, list):
@@ -27,7 +28,7 @@ def list_specialists() -> list[dict]:
 def list_doctors(specialty_slug: str) -> list[dict]:
     try:
         with _client() as client:
-            response = client.get("/internal/doctor-agents", params={"specialty": specialty_slug})
+            response = client.get("/doctor-agents", params={"specialty": specialty_slug})
             response.raise_for_status()
             data = response.json()
         if not isinstance(data, list):

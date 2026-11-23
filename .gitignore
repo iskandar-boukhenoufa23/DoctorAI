@@ -12,3 +12,5 @@ node_modules/
 venv/
 __pycache__/
 *.py[cod]
+
+ai-service/app/rag/data/anatomy-and-physiology-2e_-_WEB.pdf
